@@ -16,27 +16,37 @@ spring:
     name: campaign-api-gateway
   config:
     import: "optional:configserver:http://localhost:8088"
-  cloud:
-    gateway:
-      routes:
-        - id: campaign-analytics
-          uri: lb://campaign-analytics
-          predicates:
-            - Path=/api/analytics/**
-        - id: campaign-integration
-          uri: lb://campaign-integration
-          predicates:
-            - Path=/api/integrate/**
-        - id: campaign-payment
-          uri: lb://campaign-payment
-          predicates:
-            - Path=/api/payments/**
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: campaign-analytics
+#          uri: lb://campaign-analytics
+#          predicates:
+#            - Path=/api/analytics/**
+#          filters: 
+#            - name: TokenAuthenticationFilter 
+#        - id: campaign-integration
+#          uri: lb://campaign-integration
+#          predicates:
+#            - Path=/api/integrate/**
+#        - id: campaign-payment
+#          uri: lb://campaign-payment
+#          predicates:
+#            - Path=/api/payments/**
+#        - id: campaign-auth
+#          uri: lb://campaign-auth
+#          predicates:
+#            - Path=/auth/**
+#          filters: 
+#            - name: TokenAuthenticationFilter 
+          
+          
   main:
     web-application-type: reactive
   datasource:
-    url: jdbc:postgresql://localhost:5432/campaign_db?currentSchema=api_gateway
+    url: jdbc:postgresql://localhost:5432/campaign_db?currentSchema=campaign_auth
     username: 'postgres'
-    password: 'R@h!l@410'
+    password: 'test123'
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
