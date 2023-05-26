@@ -27,7 +27,6 @@ public class TokenAuthenticationFilter implements GatewayFilter{
 
 	@Override
 	public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-		log.info("------------TokenAuthenticationFilter------------------------");
 		ServerHttpRequest request = (ServerHttpRequest) exchange.getRequest();
 
 		final List<String> apiEndpoints = List.of("/register", "/login");
@@ -42,8 +41,8 @@ public class TokenAuthenticationFilter implements GatewayFilter{
 
 				return response.setComplete();
 			}
-
-			final String token = request.getHeaders().getOrEmpty("Authorization").get(0);
+			String authHeader = request.getHeaders().getOrEmpty("Authorization").get(0);
+			final String token = authHeader.substring(7);
 
 			try {
 				boolean tokenValid = tokenUtil.isTokenValid(token);

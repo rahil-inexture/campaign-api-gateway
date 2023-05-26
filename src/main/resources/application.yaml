@@ -23,8 +23,6 @@ spring:
 #          uri: lb://campaign-analytics
 #          predicates:
 #            - Path=/api/analytics/**
-#          filters: 
-#            - name: TokenAuthenticationFilter 
 #        - id: campaign-integration
 #          uri: lb://campaign-integration
 #          predicates:
